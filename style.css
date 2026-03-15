@@ -87,8 +87,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('MasyaAllah From study buddies to my fiancé 🤍💍- 27.12.25 -Makeup , attire & dekor by @fatimayaa.jpg') center/cover no-repeat fixed;
-    overflow: hidden;
+    background: url('background.jpg') center/cover no-repeat fixed;\n    overflow: hidden;
 }
 
 .hero-overlay {
