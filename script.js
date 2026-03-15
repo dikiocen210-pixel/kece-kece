@@ -92,7 +92,7 @@ function toggleMusic(weddingMusic, musicBtn) {
 // Countdown Timer
 // ===================================
 function initCountdown() {
-const weddingDate = new Date('December 27, 2025 11:00:00').getTime();
+const weddingDate = new Date('2026-07-19T11:00:00').getTime();
 
     function updateCountdown() {
         const now = new Date().getTime();
