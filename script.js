@@ -149,13 +149,20 @@ function initScrollAnimations() {
         observer.observe(element);
     });
 
-    // Parallax effect for hero
+    // Parallax effect for hero (disable on mobile)
+    let parallaxEnabled = window.innerWidth > 768;
     window.addEventListener('scroll', () => {
+        if (!parallaxEnabled) return;
         const hero = document.querySelector('.hero');
         const scrolled = window.pageYOffset;
         if (hero) {
             hero.style.backgroundPositionY = scrolled * 0.5 + 'px';
         }
+    });
+    
+    // Disable parallax on resize to mobile
+    window.addEventListener('resize', () => {
+        parallaxEnabled = window.innerWidth > 768;
     });
 }
 

@@ -24,6 +24,12 @@
     box-sizing: border-box;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -87,7 +93,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('background.jpg') center/cover no-repeat fixed;\n    overflow: hidden;
+background: url('background.jpeg') center/cover no-repeat fixed;
 }
 
 .hero-overlay {
@@ -338,13 +344,17 @@ body {
 }
 
 .couple-photo {
-    width: 280px;
-    height: 350px;
+    width: 100%;
+    max-width: 300px;
+    height: 380px;
     margin: 0 auto 25px;
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 20px 40px var(--shadow);
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .couple-photo::before {
@@ -362,7 +372,8 @@ body {
 .couple-photo img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background: var(--cream);
     transition: transform 0.5s ease;
 }
 
@@ -650,7 +661,8 @@ body {
 .gallery-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background: var(--cream);
     transition: transform 0.5s ease;
 }
 
@@ -945,79 +957,255 @@ footer {
     color: var(--light-text);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .couple-names {
-        font-size: 2.5rem;
+/* Responsive Design - Mobile First */
+.container {
+    padding: 0 15px; /* Tighter mobile padding */
+}
+
+/* Base typography scaling */
+.couple-names {
+    font-size: clamp(2rem, 8vw, 4rem);
+}
+
+.section-title h2 {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+}
+
+.hero {
+    min-height: 100vh;
+    height: clamp(80vh, 100vh, 100vh);
+}
+
+/* Small Mobile (<480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    .invitation-text {
+        font-size: 1rem;
+        letter-spacing: 2px;
     }
     
     .ampersand {
-        font-size: 1.5rem;
+        font-size: clamp(1.2rem, 4vw, 1.5rem);
     }
     
     .wedding-date {
-        font-size: 1.1rem;
+        font-size: clamp(1rem, 4vw, 1.5rem);
     }
     
-    .section-title h2 {
-        font-size: 2rem;
+    .btn-open {
+        padding: 14px 30px;
+        font-size: 0.95rem;
+        min-height: 50px; /* Touch friendly */
     }
     
-    .couple-grid {
-        gap: 30px;
-    }
-    
-    .couple-divider {
-        transform: rotate(90deg);
-    }
-    
-    .details-grid {
-        flex-direction: column;
-        align-items: center;
+    .couple-photo {
+        max-width: 220px;
+        height: 280px;
     }
     
     .countdown {
-        gap: 15px;
+        gap: 8px;
     }
     
     .count-item span {
-        font-size: 2rem;
+        font-size: clamp(1.2rem, 8vw, 1.5rem);
     }
     
     .count-item {
-        min-width: 60px;
+        min-width: 45px;
     }
     
     .guest-form {
-        padding: 25px;
+        padding: 20px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 16px;
+        min-height: 50px; /* Touch friendly */
+    }
+    
+    .btn-submit {
+        padding: 18px;
+        min-height: 54px;
+    }
+    
+    /* Music button mobile */
+    .music-control {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .music-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+    
+    /* Hide parallax indicator on very small screens */
+    .scroll-indicator {
+        display: none;
+    }
+}
+
+/* Tablet (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .couple-names {
+        font-size: 2.8rem;
+    }
+    
+    .couple-photo {
+        max-width: 260px;
+        height: 340px;
+    }
+    
+    .count-item span {
+        font-size: 2.2rem;
+    }
+}
+
+/* Tablet/Desktop (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .couple-grid {
+        gap: 40px;
+    }
+    
+    .details-grid {
+        gap: 30px;
+    }
+}
+
+/* Large Desktop (>1024px) - Enhance existing */
+@media (min-width: 1025px) {
+    .container {
+        padding: 0 40px;
+    }
+}
+
+/* Couple Section Mobile */
+@media (max-width: 768px) {
+    .couple-grid {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .couple-divider {
+        transform: rotate(0deg);
+        order: -1;
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+    
+    .couple-card {
+        max-width: 100%;
+    }
+}
+
+/* Details Section & Maps */
+@media (max-width: 768px) {
+    .details-grid {
+        flex-direction: column;
+        gap: 30px;
+        align-items: stretch;
+    }
+    
+    .detail-card {
+        max-width: 100%;
+        min-width: auto;
+        padding: 30px 25px;
+    }
+    
+    .map-container {
+        height: 250px;
+    }
+    
+    .map-container iframe {
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .map-container {
+        height: 300px;
+    }
+    
+    .map-container iframe {
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+
+/* Gallery Responsive */
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
     }
 }
 
 @media (max-width: 480px) {
-    .couple-names {
-        font-size: 2rem;
-    }
-    
-    .couple-photo {
-        width: 220px;
-        height: 280px;
-    }
-    
-    .btn-open {
-        padding: 12px 30px;
-        font-size: 0.9rem;
-    }
-    
-    .countdown {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
         gap: 10px;
     }
     
-    .count-item span {
-        font-size: 1.5rem;
+    .gallery-item {
+        aspect-ratio: 1;
+    }
+}
+
+/* Quote & Section Titles */
+@media (max-width: 768px) {
+    .quote-section {
+        padding: 60px 15px;
     }
     
-    .count-item {
-        min-width: 50px;
+    .quote-content {
+        padding: 30px 20px;
+        font-size: 1.1rem;
+    }
+    
+    .section-title {
+        margin-bottom: 40px;
+    }
+}
+
+/* Footer Mobile */
+@media (max-width: 768px) {
+    footer {
+        padding: 60px 15px 20px;
+    }
+    
+    .footer-content h2 {
+        font-size: 2rem;
+    }
+    
+    .account-info {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .bank-account {
+        padding: 25px;
+    }
+}
+
+/* Ensure no horizontal scroll */
+@media (max-width: 480px) {
+    body {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+    
+    /* Fix potential overflow */
+    .hero-content {
+        padding: 20px 15px;
     }
 }
 
